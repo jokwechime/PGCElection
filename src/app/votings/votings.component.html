@@ -1,0 +1,89 @@
+<div mat-dialog-title>
+    <h1>Voting Form</h1>
+
+</div>
+<form [formGroup]="votingForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Subscriber Name</mat-label>
+            <mat-select formControlName="subscriberID" (valueChange)="checkVoting($event)" >
+              <mat-option *ngFor="let item of allSubscribers" [value]="item.id">
+                {{item.subscriberName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+         <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phoneNumber">
+         </mat-form-field>
+    </div>
+         <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Email Address</mat-label>
+                <input matInput formControlName="emailAddress">
+             </mat-form-field>
+             <mat-form-field appearance="outline">
+                <mat-label>Election Year</mat-label>
+                <input matInput formControlName="electionYear"  [readonly]="true">
+             </mat-form-field>
+    
+    </div>
+    <div class="row"><span><h3 style="color:blue">Click dropdown to vote for each position</h3></span></div>
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>President</mat-label>
+            <mat-select formControlName="president">
+              <mat-option *ngFor="let item of _presidentNominees" [value]="item.nominee">
+                {{item.nominee}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>vice President</mat-label>
+            <mat-select formControlName="vicePresident">
+              <mat-option *ngFor="let item of _vpresidentNominees" [value]="item.nominee">
+                {{item.nominee}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+    </div>
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Secretary</mat-label>
+            <mat-select formControlName="secretary">
+              <mat-option *ngFor="let item of _secNominees" [value]="item.nominee">
+                {{item.nominee}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Treasurer</mat-label>
+            <mat-select formControlName="treasurer">
+              <mat-option *ngFor="let item of _treasurerNominees" [value]="item.nominee">
+                {{item.nominee}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+    </div>
+    
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Social Secretary</mat-label>
+            <mat-select formControlName="SocialSecretary">
+              <mat-option *ngFor="let item of _socsectNominees" [value]="item.nominee">
+                {{item.nominee}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>          
+          
+    </div>
+   
+    </div>
+    <div mat-dialog-actions class="action">
+    <button mat-raised-button (click)="closeForm()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+    </div>
+</form>
